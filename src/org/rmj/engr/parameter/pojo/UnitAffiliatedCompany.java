@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.engr.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,58 +17,69 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Banks")
+@Table(name="Affiliated_Company")
 
-public class UnitBank implements Serializable, GEntity {
+public class UnitAffiliatedCompany implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sBankCode")
-    private String sBankCode;
+    @Column(name = "sCompnyCd")
+    private String sCompnyCd;
     
-    @Column(name = "sBankName")
-    private String sBankName;
+    @Column(name = "sCompnyNm")
+    private String sCompnyNm;
+    
+    @Basic(optional = false)
+    @Column(name = "dAffiliat")
+    @Temporal(TemporalType.DATE)
+    private Date dAffiliat;
     
     @Column(name = "cRecdStat")
     private String cRecdStat;
-    
     @Column(name = "sModified")
     private String sModified;
-    
     @Basic(optional = false)
     @Column(name = "dModified")
-    
     @Temporal(TemporalType.TIMESTAMP)
     private Date dModified;
 
     LinkedList laColumns = null;
     
-    public UnitBank(){
-        this.sBankCode = "";
-        this.sBankName = "";
+    public UnitAffiliatedCompany(){
+        this.sCompnyCd = "";
+        this.sCompnyNm = "";
+        this.dAffiliat = null;
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sBankCode");
-        laColumns.add("sBankName");
+        laColumns.add("sCompnyCd");
+        laColumns.add("sCompnyNm");
+        laColumns.add("dAffiliat");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setBankCode(String sBankCode){
-        this.sBankCode = sBankCode;
+    public void setCompanyCode(String sCompnyCd){
+        this.sCompnyCd = sCompnyCd;
     }
-    public String getBankCode(){
-        return sBankCode;
+    public String getCompanyCode(){
+        return sCompnyCd;
     }
     
-    public void setBankName(String sBankName){
-        this.sBankName = sBankName;
+    public void setCompanyName(String sCompnyNm){
+        this.sCompnyNm = sCompnyNm;
     }
-    public String getBankName(){
-        return sBankName;
+    public String getCompanyName(){
+        return sCompnyNm;
+    }
+    
+    public void setDateAffiliated(Date dAffiliat){
+        this.dAffiliat = dAffiliat;
+    }
+    public Date getDateAffiliated(){
+        return dAffiliat;
     }
     
     public void setRecordStat(String cRecdStat){
@@ -95,18 +106,18 @@ public class UnitBank implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sBankCode != null ? sBankCode.hashCode() : 0);
+        hash += (sCompnyCd != null ? sCompnyCd.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitBank)) {
+        if (!(object instanceof UnitAffiliatedCompany)) {
             return false;
         }
-        UnitBank other = (UnitBank) object;
-        if ((this.sBankCode == null && other.sBankCode != null) || (this.sBankCode != null && !this.sBankCode.equals(other.sBankCode))) {
+        UnitAffiliatedCompany other = (UnitAffiliatedCompany) object;
+        if ((this.sCompnyCd == null && other.sCompnyCd != null) || (this.sCompnyCd != null && !this.sCompnyCd.equals(other.sCompnyCd))) {
             return false;
         }
         return true;
@@ -114,17 +125,18 @@ public class UnitBank implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitBank[sBankCode=" + sBankCode + "]";
+        return "org.rmj.parameter.pojo.UnitAffiliatedCompany[sCompnyCd=" + sCompnyCd + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sBankCode;
-            case 2: return sBankName;
-            case 3: return cRecdStat;
-            case 4: return sModified;
-            case 5: return dModified;
+            case 1: return sCompnyCd;
+            case 2: return sCompnyNm;
+            case 3: return dAffiliat;
+            case 4: return cRecdStat;
+            case 5: return sModified;
+            case 6: return dModified;
             default: return null;
         }
     }
@@ -141,7 +153,7 @@ public class UnitBank implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Banks";
+        return "Affiliated_Company";
     }
 
     @Override
@@ -161,18 +173,21 @@ public class UnitBank implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sBankCode = (String) foValue;
+                sCompnyCd = (String) foValue;
                 break;
             case 2:
-                sBankName = (String) foValue;
+                sCompnyNm = (String) foValue;
                 break;
             case 3:
-                cRecdStat = (String) foValue;
+                dAffiliat = (Date) foValue;
                 break;
             case 4:
-                sModified = (String) foValue;
+                cRecdStat = (String) foValue;
                 break;
             case 5:
+                sModified = (String) foValue;
+                break;
+            case 6:
                 dModified = (Date) foValue;
                 break;
         }    

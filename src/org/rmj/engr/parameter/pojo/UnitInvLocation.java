@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.engr.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,19 +17,19 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Brand")
+@Table(name="Inv_Location")
 
-public class UnitBrand implements Serializable, GEntity {
+public class UnitInvLocation implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sBrandCde")
-    private String sBrandCde;
-    @Column(name = "sInvTypCd")
-    private String sInvTypCd;
+    @Column(name = "sLocatnCd")
+    private String sLocatnCd;
     @Column(name = "sDescript")
     private String sDescript;
+    @Column(name = "sBriefDsc")
+    private String sBriefDsc;
     @Column(name = "cRecdStat")
     private String cRecdStat;
     @Column(name = "sModified")
@@ -41,40 +41,38 @@ public class UnitBrand implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitBrand(){
-        this.sBrandCde = "";
-        this.sInvTypCd = "";
+    public UnitInvLocation(){
         this.sDescript = "";
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sBrandCde");
-        laColumns.add("sInvTypCd");
+        laColumns.add("sLocatnCd");
+        laColumns.add("sBriefDsc");
         laColumns.add("sDescript");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setBrandCode(String sBrandCde){
-        this.sBrandCde = sBrandCde;
+    public void setLocationCode(String sLocatnCd){
+        this.sLocatnCd = sLocatnCd;
     }
-    public String getBrandCode(){
-        return sBrandCde;
-    }
-    
-    public void setInvTypeCode(String sInvTypCd){
-        this.sInvTypCd = sInvTypCd;
-    }
-    public String getInvTypeCode(){
-        return sInvTypCd;
+    public String getLocationCode(){
+        return sLocatnCd;
     }
     
-    public void setBrandName(String sDescript){
+    public void setLocationName(String sDescript){
         this.sDescript = sDescript;
     }
-    public String getBrandName(){
+    public String getLocationName(){
         return sDescript;
+    }
+    
+    public void setBriefDescript(String sBriefDsc){
+        this.sBriefDsc = sBriefDsc;
+    }
+    public String getBriefDescript(){
+        return sBriefDsc;
     }
     
     public void setRecordStat(String cRecdStat){
@@ -101,18 +99,18 @@ public class UnitBrand implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sBrandCde != null ? sBrandCde.hashCode() : 0);
+        hash += (sLocatnCd != null ? sLocatnCd.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitBrand)) {
+        if (!(object instanceof UnitInvLocation)) {
             return false;
         }
-        UnitBrand other = (UnitBrand) object;
-        if ((this.sBrandCde == null && other.sBrandCde != null) || (this.sBrandCde != null && !this.sBrandCde.equals(other.sBrandCde))) {
+        UnitInvLocation other = (UnitInvLocation) object;
+        if ((this.sLocatnCd == null && other.sLocatnCd != null) || (this.sLocatnCd != null && !this.sLocatnCd.equals(other.sLocatnCd))) {
             return false;
         }
         return true;
@@ -120,14 +118,14 @@ public class UnitBrand implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitBrand[sBrandCde=" + sBrandCde + "]";
+        return "org.rmj.integsys.pojo.UnitLocation[sLocatnCd=" + sLocatnCd + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sBrandCde;
-            case 2: return sInvTypCd;
+            case 1: return sLocatnCd;
+            case 2: return sBriefDsc;
             case 3: return sDescript;
             case 4: return cRecdStat;
             case 5: return sModified;
@@ -148,7 +146,7 @@ public class UnitBrand implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Brand";
+        return "Inv_Location";
     }
 
     @Override
@@ -168,10 +166,10 @@ public class UnitBrand implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sBrandCde = (String) foValue;
+                sLocatnCd = (String) foValue;
                 break;
             case 2:
-                sInvTypCd = (String) foValue;
+                sBriefDsc = (String) foValue;
                 break;
             case 3:
                 sDescript = (String) foValue;
@@ -205,5 +203,4 @@ public class UnitBrand implements Serializable, GEntity {
     public void list() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

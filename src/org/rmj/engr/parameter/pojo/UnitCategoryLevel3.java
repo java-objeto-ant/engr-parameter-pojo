@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.engr.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,19 +17,19 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Inv_Location")
+@Table(name="Category_Level3")
 
-public class UnitInvLocation implements Serializable, GEntity {
+public class UnitCategoryLevel3 implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sLocatnCd")
-    private String sLocatnCd;
+    @Column(name = "sCategrCd")
+    private String sCategrCd;
     @Column(name = "sDescript")
     private String sDescript;
-    @Column(name = "sBriefDsc")
-    private String sBriefDsc;
+    @Column(name = "sMainCatx")
+    private String sMainCatx;
     @Column(name = "cRecdStat")
     private String cRecdStat;
     @Column(name = "sModified")
@@ -41,38 +41,40 @@ public class UnitInvLocation implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitInvLocation(){
+    public UnitCategoryLevel3(){
+        this.sCategrCd = "";
         this.sDescript = "";
+        this.sMainCatx = "";
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sLocatnCd");
-        laColumns.add("sBriefDsc");
+        laColumns.add("sCategrCd");
         laColumns.add("sDescript");
+        laColumns.add("sMainCatx");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setLocationCode(String sLocatnCd){
-        this.sLocatnCd = sLocatnCd;
+    public void setCategoryID(String sCategrID){
+        this.sCategrCd = sCategrID;
     }
-    public String getLocationCode(){
-        return sLocatnCd;
+    public String getCategoryID(){
+        return sCategrCd;
     }
     
-    public void setLocationName(String sDescript){
+    public void setCategoryName(String sDescript){
         this.sDescript = sDescript;
     }
-    public String getLocationName(){
+    public String getCategoryName(){
         return sDescript;
     }
     
-    public void setBriefDescript(String sBriefDsc){
-        this.sBriefDsc = sBriefDsc;
+    public void setMainCategory(String sMainCatx){
+        this.sMainCatx = sMainCatx;
     }
-    public String getBriefDescript(){
-        return sBriefDsc;
+    public String getMainCategory(){
+        return sMainCatx;
     }
     
     public void setRecordStat(String cRecdStat){
@@ -99,18 +101,18 @@ public class UnitInvLocation implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sLocatnCd != null ? sLocatnCd.hashCode() : 0);
+        hash += (sCategrCd != null ? sCategrCd.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitInvLocation)) {
+        if (!(object instanceof UnitCategoryLevel3)) {
             return false;
         }
-        UnitInvLocation other = (UnitInvLocation) object;
-        if ((this.sLocatnCd == null && other.sLocatnCd != null) || (this.sLocatnCd != null && !this.sLocatnCd.equals(other.sLocatnCd))) {
+        UnitCategoryLevel3 other = (UnitCategoryLevel3) object;
+        if ((this.sCategrCd == null && other.sCategrCd != null) || (this.sCategrCd != null && !this.sCategrCd.equals(other.sCategrCd))) {
             return false;
         }
         return true;
@@ -118,15 +120,15 @@ public class UnitInvLocation implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.integsys.pojo.UnitLocation[sLocatnCd=" + sLocatnCd + "]";
+        return "org.rmj.parameter.pojo.UnitCategoryLevel3[sCategrCd=" + sCategrCd + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sLocatnCd;
-            case 2: return sBriefDsc;
-            case 3: return sDescript;
+            case 1: return sCategrCd;
+            case 2: return sDescript;
+            case 3: return sMainCatx;
             case 4: return cRecdStat;
             case 5: return sModified;
             case 6: return dModified;
@@ -146,7 +148,7 @@ public class UnitInvLocation implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Inv_Location";
+        return "Category_Level3";
     }
 
     @Override
@@ -166,13 +168,13 @@ public class UnitInvLocation implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sLocatnCd = (String) foValue;
+                sCategrCd = (String) foValue;
                 break;
             case 2:
-                sBriefDsc = (String) foValue;
+                sDescript = (String) foValue;
                 break;
             case 3:
-                sDescript = (String) foValue;
+                sMainCatx = (String) foValue;
                 break;
             case 4:
                 cRecdStat = (String) foValue;
@@ -203,4 +205,5 @@ public class UnitInvLocation implements Serializable, GEntity {
     public void list() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

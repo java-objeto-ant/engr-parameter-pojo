@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.engr.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;

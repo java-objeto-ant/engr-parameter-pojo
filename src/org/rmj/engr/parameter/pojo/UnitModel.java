@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.engr.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,19 +17,29 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Category_Level4")
+@Table(name="Model")
 
-public class UnitCategoryLevel4 implements Serializable, GEntity {
+public class UnitModel implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sCategrCd")
-    private String sCategrCd;
+    @Column(name = "sModelCde")
+    private String sModelCde;
+    @Column(name = "sInvTypCd")
+    private String sInvTypCd;
+    @Column(name = "sBriefDsc")
+    private String sBriefDsc;
+    @Column(name = "sModelNme")
+    private String sModelNme;
     @Column(name = "sDescript")
     private String sDescript;
-    @Column(name = "sMainCatx")
-    private String sMainCatx;
+    @Column(name = "sBrandCde")
+    private String sBrandCde;
+    @Column(name = "sCategrCd")
+    private String sCategrCd;
+    @Column(name = "cEndOfLfe")
+    private String cEndOfLfe;
     @Column(name = "cRecdStat")
     private String cRecdStat;
     @Column(name = "sModified")
@@ -41,42 +51,86 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitCategoryLevel4(){
-        this.sCategrCd = "";
+    public UnitModel(){
+        this.sModelCde = "";
+        this.sInvTypCd = "";
+        this.sBriefDsc = "";
+        this.sModelNme = "";
         this.sDescript = "";
-        this.sMainCatx = "";
+        this.sBrandCde = "";
+        this.sCategrCd = "";
+        this.cEndOfLfe = "0";
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sCategrCd");
+        laColumns.add("sModelCde");
+        laColumns.add("sInvTypCd");
+        laColumns.add("sBriefDsc");
+        laColumns.add("sModelNme");
         laColumns.add("sDescript");
-        laColumns.add("sMainCatx");
+        laColumns.add("sBrandCde");
+        laColumns.add("sCategrCd");
+        laColumns.add("cEndOfLfe");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setCategoryID(String sCategrID){
-        this.sCategrCd = sCategrID;
+    public void setModelCode(String sModelCde){
+        this.sModelCde = sModelCde;
     }
-    public String getCategoryID(){
-        return sCategrCd;
+    public String getModelCode(){
+        return sModelCde;
     }
     
-    public void setCategoryName(String sDescript){
+    public void setInvTypeCode(String sInvTypCd){
+        this.sInvTypCd = sInvTypCd;
+    }
+    public String getInvTypeCode(){
+        return sInvTypCd;
+    }
+    
+    public void setBriefDescript(String sBriefDsc){
+        this.sBriefDsc = sBriefDsc;
+    }
+    public String getBriefDescript(){
+        return sBriefDsc;
+    }
+    
+    public void setModelName(String sModelNme){
+        this.sModelNme = sModelNme;
+    }
+    public String getModelName(){
+        return sModelNme;
+    }
+    
+    public void setDescription(String sDescript){
         this.sDescript = sDescript;
     }
-    public String getCategoryName(){
+    public String getDescription(){
         return sDescript;
     }
     
-    public void setMainCategory(String sMainCatx){
-        this.sMainCatx = sMainCatx;
+    public void setBrandCode(String sBrandCde){
+        this.sBrandCde = sBrandCde;
     }
-    public String getMainCategory(){
-        return sMainCatx;
+    public String getBrandCode(){
+        return sBrandCde;
     }
     
+    public void setCategoryCode(String sCategrCd){
+        this.sCategrCd = sCategrCd;
+    }
+    public String getCategoryCode(){
+        return sCategrCd;
+    }
+    
+    public void setIsEndofLife(String cEndOfLfe){
+        this.cEndOfLfe = cEndOfLfe;
+    }
+    public String getIsEndofLife(){
+        return cEndOfLfe;
+    }
     public void setRecordStat(String cRecdStat){
         this.cRecdStat = cRecdStat;
     }
@@ -101,18 +155,18 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sCategrCd != null ? sCategrCd.hashCode() : 0);
+        hash += (sModelCde != null ? sModelCde.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitCategoryLevel4)) {
+        if (!(object instanceof UnitModel)) {
             return false;
         }
-        UnitCategoryLevel4 other = (UnitCategoryLevel4) object;
-        if ((this.sCategrCd == null && other.sCategrCd != null) || (this.sCategrCd != null && !this.sCategrCd.equals(other.sCategrCd))) {
+        UnitModel other = (UnitModel) object;
+        if ((this.sModelCde == null && other.sModelCde != null) || (this.sModelCde != null && !this.sModelCde.equals(other.sModelCde))) {
             return false;
         }
         return true;
@@ -120,18 +174,23 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitCategoryLevel3[sCategrCd=" + sCategrCd + "]";
+        return "org.rmj.parameter.pojo.UnitModel[sModelCde=" + sModelCde + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sCategrCd;
-            case 2: return sDescript;
-            case 3: return sMainCatx;
-            case 4: return cRecdStat;
-            case 5: return sModified;
-            case 6: return dModified;
+            case 1: return sModelCde;
+            case 2: return sInvTypCd;
+            case 3: return sBriefDsc;
+            case 4: return sModelNme;
+            case 5: return sDescript;
+            case 6: return sBrandCde;
+            case 7: return sCategrCd;
+            case 8: return cEndOfLfe;
+            case 9: return cRecdStat;
+            case 10: return sModified;
+            case 11: return dModified;
             default: return null;
         }
     }
@@ -148,7 +207,7 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Category_Level4";
+        return "Model";
     }
 
     @Override
@@ -168,21 +227,36 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sCategrCd = (String) foValue;
+                sModelCde = (String) foValue;
                 break;
             case 2:
-                sDescript = (String) foValue;
+                sInvTypCd = (String) foValue;
                 break;
             case 3:
-                sMainCatx = (String) foValue;
+                sBriefDsc = (String) foValue;
                 break;
             case 4:
-                cRecdStat = (String) foValue;
+                sModelNme = (String) foValue;
                 break;
             case 5:
-                sModified = (String) foValue;
+                sDescript = (String) foValue;
                 break;
             case 6:
+                sBrandCde = (String) foValue;
+                break;
+            case 7:
+                sCategrCd = (String) foValue;
+                break;
+            case 8:
+                cEndOfLfe = (String) foValue;
+                break;
+            case 9:
+                cRecdStat = (String) foValue;
+                break;
+            case 10:
+                sModified = (String) foValue;
+                break;
+            case 11:
                 dModified = (Date) foValue;
                 break;
         }    

@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.engr.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,19 +17,21 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Category")
+@Table(name="Term")
 
-public class UnitCategory implements Serializable, GEntity {
+public class UnitTerm implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sCategrCd")
-    private String sCategrCd;
+    @Column(name = "sTermCode")
+    private String sTermCode;
     @Column(name = "sDescript")
     private String sDescript;
-    @Column(name = "sInvTypCd")
-    private String sInvTypCd;
+    @Column(name = "cCoverage")
+    private String cCoverage;
+    @Column(name = "nTermValx")
+    private Number nTermValx;
     @Column(name = "cRecdStat")
     private String cRecdStat;
     @Column(name = "sModified")
@@ -41,40 +43,49 @@ public class UnitCategory implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitCategory(){
-        this.sCategrCd = "";
+    public UnitTerm(){
+        this.sTermCode = "";
         this.sDescript = "";
-        this.sInvTypCd = "";
+        this.cCoverage = "0";
+        this.nTermValx = 0;
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sCategrCd");
+        laColumns.add("sTermCode");
         laColumns.add("sDescript");
-        laColumns.add("sInvTypCd");
+        laColumns.add("cCoverage");
+        laColumns.add("nTermValx");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setCategoryID(String sCategrID){
-        this.sCategrCd = sCategrID;
+    public void setTermID(String sTermCode){
+        this.sTermCode = sTermCode;
     }
-    public String getCategoryID(){
-        return sCategrCd;
+    public String getTermID(){
+        return sTermCode;
     }
     
-    public void setCategoryName(String sDescript){
+    public void setTermName(String sDescript){
         this.sDescript = sDescript;
     }
-    public String getCategoryName(){
+    public String getTermName(){
         return sDescript;
     }
     
-    public void setInvTypeCode(String sInvTypCd){
-        this.sInvTypCd = sInvTypCd;
+    public void setCoverage(String cCoverage){
+        this.cCoverage = cCoverage;
     }
-    public String getInvTypeCode(){
-        return sInvTypCd;
+    public String getCoverage(){
+        return cCoverage;
+    }
+    
+    public void setTermValue(Number nTermValx){
+        this.nTermValx = nTermValx;
+    }
+    public Number getTermValue(){
+        return nTermValx;
     }
     
     public void setRecordStat(String cRecdStat){
@@ -101,18 +112,18 @@ public class UnitCategory implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sCategrCd != null ? sCategrCd.hashCode() : 0);
+        hash += (sTermCode != null ? sTermCode.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitCategory)) {
+        if (!(object instanceof UnitTerm)) {
             return false;
         }
-        UnitCategory other = (UnitCategory) object;
-        if ((this.sCategrCd == null && other.sCategrCd != null) || (this.sCategrCd != null && !this.sCategrCd.equals(other.sCategrCd))) {
+        UnitTerm other = (UnitTerm) object;
+        if ((this.sTermCode == null && other.sTermCode != null) || (this.sTermCode != null && !this.sTermCode.equals(other.sTermCode))) {
             return false;
         }
         return true;
@@ -120,18 +131,19 @@ public class UnitCategory implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitCategory[sCategrCd=" + sCategrCd + "]";
+        return "org.rmj.parameter.pojo.UnitColor[sTermCode=" + sTermCode + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sCategrCd;
+            case 1: return sTermCode;
             case 2: return sDescript;
-            case 3: return sInvTypCd;
-            case 4: return cRecdStat;
-            case 5: return sModified;
-            case 6: return dModified;
+            case 3: return cCoverage;
+            case 4: return nTermValx;
+            case 5: return cRecdStat;
+            case 6: return sModified;
+            case 7: return dModified;
             default: return null;
         }
     }
@@ -148,7 +160,7 @@ public class UnitCategory implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Category";
+        return "Term";
     }
 
     @Override
@@ -168,21 +180,24 @@ public class UnitCategory implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sCategrCd = (String) foValue;
+                sTermCode = (String) foValue;
                 break;
             case 2:
                 sDescript = (String) foValue;
                 break;
             case 3:
-                sInvTypCd = (String) foValue;
+                cCoverage = (String) foValue;
                 break;
             case 4:
+                nTermValx = (Number) foValue;
+                break;     
+            case 5:
                 cRecdStat = (String) foValue;
                 break;
-            case 5:
+            case 6:
                 sModified = (String) foValue;
                 break;
-            case 6:
+            case 7:
                 dModified = (Date) foValue;
                 break;
         }    

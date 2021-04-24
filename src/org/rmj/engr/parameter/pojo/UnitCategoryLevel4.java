@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.engr.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,19 +17,19 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Color_Detail")
+@Table(name="Category_Level4")
 
-public class UnitColorDetail implements Serializable, GEntity {
+public class UnitCategoryLevel4 implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sColorIDx")
-    private String sColorIDx;
+    @Column(name = "sCategrCd")
+    private String sCategrCd;
     @Column(name = "sDescript")
     private String sDescript;
-    @Column(name = "sColorCde")
-    private String sColorCde;
+    @Column(name = "sMainCatx")
+    private String sMainCatx;
     @Column(name = "cRecdStat")
     private String cRecdStat;
     @Column(name = "sModified")
@@ -41,40 +41,40 @@ public class UnitColorDetail implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitColorDetail(){
-        this.sColorIDx = "";
+    public UnitCategoryLevel4(){
+        this.sCategrCd = "";
         this.sDescript = "";
-        this.sColorCde = "";
+        this.sMainCatx = "";
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sColorIDx");
+        laColumns.add("sCategrCd");
         laColumns.add("sDescript");
-        laColumns.add("sColorCde");
+        laColumns.add("sMainCatx");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setColorID(String sColorCde){
-        this.sColorIDx = sColorCde;
+    public void setCategoryID(String sCategrID){
+        this.sCategrCd = sCategrID;
     }
-    public String getColorID(){
-        return sColorIDx;
+    public String getCategoryID(){
+        return sCategrCd;
     }
     
-    public void setColorName(String sDescript){
+    public void setCategoryName(String sDescript){
         this.sDescript = sDescript;
     }
-    public String getColorName(){
+    public String getCategoryName(){
         return sDescript;
     }
     
-    public void setColorCode(String sColorCde){
-        this.sColorCde = sColorCde;
+    public void setMainCategory(String sMainCatx){
+        this.sMainCatx = sMainCatx;
     }
-    public String getColorCode(){
-        return sColorCde;
+    public String getMainCategory(){
+        return sMainCatx;
     }
     
     public void setRecordStat(String cRecdStat){
@@ -101,18 +101,18 @@ public class UnitColorDetail implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sColorCde != null ? sColorCde.hashCode() : 0);
+        hash += (sCategrCd != null ? sCategrCd.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitColorDetail)) {
+        if (!(object instanceof UnitCategoryLevel4)) {
             return false;
         }
-        UnitColorDetail other = (UnitColorDetail) object;
-        if ((this.sColorCde == null && other.sColorCde != null) || (this.sColorCde != null && !this.sColorCde.equals(other.sColorCde))) {
+        UnitCategoryLevel4 other = (UnitCategoryLevel4) object;
+        if ((this.sCategrCd == null && other.sCategrCd != null) || (this.sCategrCd != null && !this.sCategrCd.equals(other.sCategrCd))) {
             return false;
         }
         return true;
@@ -120,15 +120,15 @@ public class UnitColorDetail implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitColorDetail[sColorCde=" + sColorCde + "]";
+        return "org.rmj.parameter.pojo.UnitCategoryLevel3[sCategrCd=" + sCategrCd + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sColorIDx;
+            case 1: return sCategrCd;
             case 2: return sDescript;
-            case 3: return sColorCde;
+            case 3: return sMainCatx;
             case 4: return cRecdStat;
             case 5: return sModified;
             case 6: return dModified;
@@ -148,7 +148,7 @@ public class UnitColorDetail implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Color_Detail";
+        return "Category_Level4";
     }
 
     @Override
@@ -168,13 +168,13 @@ public class UnitColorDetail implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sColorIDx = (String) foValue;
+                sCategrCd = (String) foValue;
                 break;
             case 2:
                 sDescript = (String) foValue;
                 break;
             case 3:
-                sColorCde = (String) foValue;
+                sMainCatx = (String) foValue;
                 break;
             case 4:
                 cRecdStat = (String) foValue;

@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.engr.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,29 +17,19 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Model")
+@Table(name="Brand")
 
-public class UnitModel implements Serializable, GEntity {
+public class UnitBrand implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sModelCde")
-    private String sModelCde;
-    @Column(name = "sInvTypCd")
-    private String sInvTypCd;
-    @Column(name = "sBriefDsc")
-    private String sBriefDsc;
-    @Column(name = "sModelNme")
-    private String sModelNme;
-    @Column(name = "sDescript")
-    private String sDescript;
     @Column(name = "sBrandCde")
     private String sBrandCde;
-    @Column(name = "sCategrCd")
-    private String sCategrCd;
-    @Column(name = "cEndOfLfe")
-    private String cEndOfLfe;
+    @Column(name = "sInvTypCd")
+    private String sInvTypCd;
+    @Column(name = "sDescript")
+    private String sDescript;
     @Column(name = "cRecdStat")
     private String cRecdStat;
     @Column(name = "sModified")
@@ -51,64 +41,19 @@ public class UnitModel implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitModel(){
-        this.sModelCde = "";
-        this.sInvTypCd = "";
-        this.sBriefDsc = "";
-        this.sModelNme = "";
-        this.sDescript = "";
+    public UnitBrand(){
         this.sBrandCde = "";
-        this.sCategrCd = "";
-        this.cEndOfLfe = "0";
+        this.sInvTypCd = "";
+        this.sDescript = "";
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sModelCde");
-        laColumns.add("sInvTypCd");
-        laColumns.add("sBriefDsc");
-        laColumns.add("sModelNme");
-        laColumns.add("sDescript");
         laColumns.add("sBrandCde");
-        laColumns.add("sCategrCd");
-        laColumns.add("cEndOfLfe");
+        laColumns.add("sInvTypCd");
+        laColumns.add("sDescript");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
-    }
-    
-    public void setModelCode(String sModelCde){
-        this.sModelCde = sModelCde;
-    }
-    public String getModelCode(){
-        return sModelCde;
-    }
-    
-    public void setInvTypeCode(String sInvTypCd){
-        this.sInvTypCd = sInvTypCd;
-    }
-    public String getInvTypeCode(){
-        return sInvTypCd;
-    }
-    
-    public void setBriefDescript(String sBriefDsc){
-        this.sBriefDsc = sBriefDsc;
-    }
-    public String getBriefDescript(){
-        return sBriefDsc;
-    }
-    
-    public void setModelName(String sModelNme){
-        this.sModelNme = sModelNme;
-    }
-    public String getModelName(){
-        return sModelNme;
-    }
-    
-    public void setDescription(String sDescript){
-        this.sDescript = sDescript;
-    }
-    public String getDescription(){
-        return sDescript;
     }
     
     public void setBrandCode(String sBrandCde){
@@ -118,19 +63,20 @@ public class UnitModel implements Serializable, GEntity {
         return sBrandCde;
     }
     
-    public void setCategoryCode(String sCategrCd){
-        this.sCategrCd = sCategrCd;
+    public void setInvTypeCode(String sInvTypCd){
+        this.sInvTypCd = sInvTypCd;
     }
-    public String getCategoryCode(){
-        return sCategrCd;
+    public String getInvTypeCode(){
+        return sInvTypCd;
     }
     
-    public void setIsEndofLife(String cEndOfLfe){
-        this.cEndOfLfe = cEndOfLfe;
+    public void setBrandName(String sDescript){
+        this.sDescript = sDescript;
     }
-    public String getIsEndofLife(){
-        return cEndOfLfe;
+    public String getBrandName(){
+        return sDescript;
     }
+    
     public void setRecordStat(String cRecdStat){
         this.cRecdStat = cRecdStat;
     }
@@ -155,18 +101,18 @@ public class UnitModel implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sModelCde != null ? sModelCde.hashCode() : 0);
+        hash += (sBrandCde != null ? sBrandCde.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitModel)) {
+        if (!(object instanceof UnitBrand)) {
             return false;
         }
-        UnitModel other = (UnitModel) object;
-        if ((this.sModelCde == null && other.sModelCde != null) || (this.sModelCde != null && !this.sModelCde.equals(other.sModelCde))) {
+        UnitBrand other = (UnitBrand) object;
+        if ((this.sBrandCde == null && other.sBrandCde != null) || (this.sBrandCde != null && !this.sBrandCde.equals(other.sBrandCde))) {
             return false;
         }
         return true;
@@ -174,23 +120,18 @@ public class UnitModel implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitModel[sModelCde=" + sModelCde + "]";
+        return "org.rmj.parameter.pojo.UnitBrand[sBrandCde=" + sBrandCde + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sModelCde;
+            case 1: return sBrandCde;
             case 2: return sInvTypCd;
-            case 3: return sBriefDsc;
-            case 4: return sModelNme;
-            case 5: return sDescript;
-            case 6: return sBrandCde;
-            case 7: return sCategrCd;
-            case 8: return cEndOfLfe;
-            case 9: return cRecdStat;
-            case 10: return sModified;
-            case 11: return dModified;
+            case 3: return sDescript;
+            case 4: return cRecdStat;
+            case 5: return sModified;
+            case 6: return dModified;
             default: return null;
         }
     }
@@ -207,7 +148,7 @@ public class UnitModel implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Model";
+        return "Brand";
     }
 
     @Override
@@ -227,36 +168,21 @@ public class UnitModel implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sModelCde = (String) foValue;
+                sBrandCde = (String) foValue;
                 break;
             case 2:
                 sInvTypCd = (String) foValue;
                 break;
             case 3:
-                sBriefDsc = (String) foValue;
-                break;
-            case 4:
-                sModelNme = (String) foValue;
-                break;
-            case 5:
                 sDescript = (String) foValue;
                 break;
-            case 6:
-                sBrandCde = (String) foValue;
-                break;
-            case 7:
-                sCategrCd = (String) foValue;
-                break;
-            case 8:
-                cEndOfLfe = (String) foValue;
-                break;
-            case 9:
+            case 4:
                 cRecdStat = (String) foValue;
                 break;
-            case 10:
+            case 5:
                 sModified = (String) foValue;
                 break;
-            case 11:
+            case 6:
                 dModified = (Date) foValue;
                 break;
         }    
